@@ -1,0 +1,18 @@
+# image from https://github.com/aws/deep-learning-containers/blob/master/available_images.md
+FROM 763104351884.dkr.ecr.us-east-1.amazonaws.com/pytorch-inference:1.5.0-cpu-py36-ubuntu16.04-v1.0
+
+# for local development
+#FROM sagemaker-pytorch-inference:1_5_0_py3_cpu
+
+LABEL maintainer="Storyblocks"
+
+# install the face_detect module into the container
+RUN apt-get update && apt-get install -y --no-install-recommends git
+
+WORKDIR /
+RUN git clone https://github.com/hukkelas/DSFD-Pytorch-Inference.git
+RUN git checkout 36fda4e
+RUN pip install /DSFD-Pytorch-Inference
+
+RUN mkdir -p /opt/ml/model/
+COPY inference.py /opt/ml/model/

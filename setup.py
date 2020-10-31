@@ -34,7 +34,7 @@ setup(
     package_data={'': ["etc/*"]},
     py_modules=[splitext(basename(path))[0] for path in glob('src/*.py')],
 
-    long_description=read('README.rst'),
+    long_description=read('README.original.rst'),
     author='Amazon Web Services',
     url='https://github.com/aws/sagemaker-pytorch-inference-toolkit',
     license='Apache License 2.0',
